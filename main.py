@@ -1,5 +1,11 @@
+import tkinter as tk
+
+
 def main():
-    print("Hello, World!")
+    root = tk.Tk()
+    root.title("Barbell Weights Configuration")
+
+    root.mainloop()
 
 
 if __name__ == "__main__":
