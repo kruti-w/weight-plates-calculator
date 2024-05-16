@@ -26,6 +26,7 @@ def main():
 
     frm2 = ttk.Frame(root, height=300, width=700)
     frm2.grid()
+    frm2.grid_propagate(False)
 
     input_str1 = tk.Entry(frm2)
     input_str1.grid(column=10, row=25)
