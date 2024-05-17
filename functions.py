@@ -30,7 +30,18 @@ def add_plates(plates_list):
         plate_label = tk.Label(plates_window, text=plate)
         plate_label.grid()
 
+        w = Spinbox(plates_window, from_=0, to=50)
+        w.grid()
+
     label.grid()
+    add_btn = tk.Button(plates_window, text="ADD", command=lambda: add_new_plates())
+    add_btn.grid()
+
+
+def add_new_plates():
+    add_new = tk.Toplevel()
+    add_new.title("Add New Plates")
+    add_new.geometry("350x350")
 
 
 def edit_plates(plates_list):

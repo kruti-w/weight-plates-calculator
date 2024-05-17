@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import ttk
 from functions import *
 
-p_list = ["0"]
+p_list = []
 u_list = ["User1", "User2"]
 
 
@@ -30,6 +30,8 @@ def main():
 
     input_str1 = tk.Entry(frm2)
     input_str1.grid(column=10, row=25)
+
+
 
     root.mainloop()
 
