@@ -14,6 +14,28 @@ def add_user(users_list):
         user_label.grid()
 
     label.grid()
+    add_btn = tk.Button(users_window, text="ADD", command=lambda: add_new_user(users_list))
+    add_btn.grid()
+
+
+def add_new_user(user_list):
+    add_new = tk.Toplevel()
+    add_new.title("Add User")
+    add_new.geometry("350x350")
+
+    tk.Label(add_new, text="Name").grid(row=5)
+    input_name = Entry(add_new)
+    input_name.grid(row=5, column=10)
+    print(input_name.get())
+
+    def ok_func():
+        print(f"Pressed OK.\nInput was {input_name.get()}")
+        user_list.append(input_name.get())
+        print(f"Updated {user_list=}")
+        add_new.destroy()
+    ok_btn = Button(add_new, text="OK", command=ok_func)
+    ok_btn.grid(row=10)
+
 
 
 def edit_users():
@@ -42,6 +64,16 @@ def add_new_plates():
     add_new = tk.Toplevel()
     add_new.title("Add New Plates")
     add_new.geometry("350x350")
+
+    tk.Label(add_new, text="Weight (in lbs): ").grid(row=5)
+    tk.Label(add_new, text="Quantity").grid(row=10)
+    input_weight = Entry(add_new)
+    input_weight.grid(row=5, column=10)
+    input_quantity = Entry(add_new)
+    input_quantity.grid(row=10, column=10)
+
+    ok_btn = tk.Button(add_new, text="OK")
+    ok_btn.grid(row=16, column=10)
 
 
 def edit_plates(plates_list):

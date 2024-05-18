@@ -4,7 +4,7 @@ from tkinter import ttk
 from functions import *
 
 p_list = []
-u_list = ["User1", "User2"]
+u_list = []
 
 
 def main():
@@ -30,6 +30,10 @@ def main():
 
     input_str1 = tk.Entry(frm2)
     input_str1.grid(column=10, row=25)
+
+
+
+
 
 
 
