@@ -9,10 +9,12 @@ def add_user(users_list):
     users_window.title("Modify Users")
     users_window.geometry("450x450")
 
-    label = tk.Label(users_window, text="View Users")
+    label = tk.Label(users_window, text="All Users")
     for user in users_list:
         user_label = tk.Label(users_window, text=user)
         user_label.grid()
+        delete_btn = Button(users_window, text="DELETE", command=lambda: delete_user())
+        delete_btn.grid()
 
     label.grid()
     add_btn = tk.Button(users_window, text="ADD", command=lambda: add_new_user(users_list))

@@ -7,9 +7,13 @@ import json
 
 with open('data.json', 'r') as data_file:
     data_loaded = json.load(data_file)
+
+print(f"{data_loaded=}")
+
 p_list = []
 u_list = []
 
+p_list, u_list = data_loaded
 
 def main():
     root = tk.Tk()
@@ -36,11 +40,12 @@ def main():
     input_str1.grid(column=10, row=25)
 
     root.mainloop()
+    print("program closing")
     with open('data.json', 'w') as txtfile:
-        json.dump(p_list, txtfile)
-        json.dump("\n", txtfile)
-        json.dump(u_list, txtfile)
-
+        json.dump([p_list, u_list], txtfile)
+        # json.dump("\n", txtfile)
+        # json.dump(u_list, txtfile)
+    print("Json done")
 
 if __name__ == "__main__":
     main()
