@@ -2,7 +2,11 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 from functions import *
+import json
+# https://stackoverflow.com/questions/12309269/how-do-i-write-json-data-to-a-file
 
+with open('data.json', 'r') as data_file:
+    data_loaded = json.load(data_file)
 p_list = []
 u_list = []
 
@@ -31,13 +35,11 @@ def main():
     input_str1 = tk.Entry(frm2)
     input_str1.grid(column=10, row=25)
 
-
-
-
-
-
-
     root.mainloop()
+    with open('data.json', 'w') as txtfile:
+        json.dump(p_list, txtfile)
+        json.dump("\n", txtfile)
+        json.dump(u_list, txtfile)
 
 
 if __name__ == "__main__":

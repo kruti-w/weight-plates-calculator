@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
+import json
 
 
 def add_user(users_list):
@@ -33,9 +34,9 @@ def add_new_user(user_list):
         user_list.append(input_name.get())
         print(f"Updated {user_list=}")
         add_new.destroy()
+
     ok_btn = Button(add_new, text="OK", command=ok_func)
     ok_btn.grid(row=10)
-
 
 
 def edit_users():
@@ -56,11 +57,11 @@ def add_plates(plates_list):
         w.grid()
 
     label.grid()
-    add_btn = tk.Button(plates_window, text="ADD", command=lambda: add_new_plates())
+    add_btn = tk.Button(plates_window, text="ADD", command=lambda: add_new_plates(plates_list))
     add_btn.grid()
 
 
-def add_new_plates():
+def add_new_plates(plate_list):
     add_new = tk.Toplevel()
     add_new.title("Add New Plates")
     add_new.geometry("350x350")
@@ -72,7 +73,13 @@ def add_new_plates():
     input_quantity = Entry(add_new)
     input_quantity.grid(row=10, column=10)
 
-    ok_btn = tk.Button(add_new, text="OK")
+    def ok_func():
+        print(f"Pressed OK.\nInput was {input_quantity.get()}")
+        plate_list.append([input_weight.get(), input_quantity.get()])
+        print(f"Updated {plate_list=}")
+        add_new.destroy()
+
+    ok_btn = tk.Button(add_new, text="OK", command=ok_func)
     ok_btn.grid(row=16, column=10)
 
 
