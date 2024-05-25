@@ -3,42 +3,60 @@ from tkinter import ttk
 import tkinter as tk
 import json
 
+user_rows = []
+
 
 def add_user(users_list):
     users_window = tk.Toplevel()
     users_window.title("Modify Users")
     users_window.geometry("450x450")
 
+    def create_user_row(user):
+        user_label = tk.Label(users_window, text=user)
+        user_label.grid(column=1)
+        delete_btn = Button(users_window, text="DELETE", command=lambda: delete_user(users_list, user))
+        delete_btn.grid(column=2)
+        user_rows.append([user_label, delete_btn])
+
+    def delete_user(user_list, i):
+        user_list.remove(i)  # removes user list element
+        # destroy ALL buttons & labels
+        for label, button in user_rows:
+            label.destroy()
+            button.destroy()
+        # Draw everything again
+        for user in users_list:
+            create_user_row(user)
+        return user_list
+
+    def add_new_user(user_list):
+        add_new = tk.Toplevel()
+        add_new.title("Add User")
+        add_new.geometry("350x350")
+
+        tk.Label(add_new, text="Name").grid(row=5)
+        input_name = Entry(add_new)
+        input_name.grid(row=5, column=10)
+        print(input_name.get())
+
+        def ok_func():
+            print(f"Pressed OK.\nInput was {input_name.get()}")
+            user_list.append(input_name.get())
+            print(f"Updated {user_list=}")
+            # draw the new row
+            create_user_row(users_list[-1])
+            add_new.destroy()
+
+        ok_btn = Button(add_new, text="OK", command=ok_func)
+        ok_btn.grid(row=10)
+
     label = tk.Label(users_window, text="All Users")
     for user in users_list:
-        user_label = tk.Label(users_window, text=user)
-        user_label.grid()
-        delete_btn = Button(users_window, text="DELETE", command=lambda: delete_user())
-        delete_btn.grid()
+        create_user_row(user)
 
     label.grid()
     add_btn = tk.Button(users_window, text="ADD", command=lambda: add_new_user(users_list))
     add_btn.grid()
-
-
-def add_new_user(user_list):
-    add_new = tk.Toplevel()
-    add_new.title("Add User")
-    add_new.geometry("350x350")
-
-    tk.Label(add_new, text="Name").grid(row=5)
-    input_name = Entry(add_new)
-    input_name.grid(row=5, column=10)
-    print(input_name.get())
-
-    def ok_func():
-        print(f"Pressed OK.\nInput was {input_name.get()}")
-        user_list.append(input_name.get())
-        print(f"Updated {user_list=}")
-        add_new.destroy()
-
-    ok_btn = Button(add_new, text="OK", command=ok_func)
-    ok_btn.grid(row=10)
 
 
 def edit_users():
@@ -92,9 +110,6 @@ def edit_plates(plates_list):
 def output_plates():
     return
 
-
-def delete_user():
-    return
 
 
 def delete_plate():
